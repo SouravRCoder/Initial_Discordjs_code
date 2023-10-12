@@ -2,10 +2,21 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const { token } = require('./config.json');
+require('dotenv').config();
+
+// Prefix
+
+const prefix = '.';
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	],
+});
 
 // import Commands in commands folder 
 client.commands = new Collection();
@@ -33,23 +44,12 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-// When the client is ready, run this code (only once)
-// client.once('ready', () => {
-// 	console.log('Ready!');
-// });
+
 //Commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	// const { commandName } = interaction;
 
-	// if (commandName === 'ping') {
-	// 	await interaction.reply('Pong!');
-	// } else if (commandName === 'server') {
-	// 	await interaction.reply(`Server Name = ${interaction.guild.name}\n Total Member: ${interaction.guild.memberCount}`);
-	// } else if (commandName === 'user') {
-	// 	await interaction.reply(`User info.\n ${interaction.user.tag} \n Id : ${interaction.user.id}`);
-	// }
 
 
 	// ---------------Dynamically executing commands---------------------------------
@@ -68,4 +68,4 @@ client.on('interactionCreate', async interaction => {
 
 
 // Login to Discord with your client's token
-client.login(token);
+client.login(process.env.Token);

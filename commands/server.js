@@ -8,5 +8,7 @@ module.exports = {
 		
 	async execute(interaction) {
 		await interaction.reply(`Server Name: ${interaction.guild.name}\n Total Member: ${interaction.guild.memberCount}`);
+
+		
 	},
 };

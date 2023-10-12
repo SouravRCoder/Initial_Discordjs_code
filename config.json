@@ -1,7 +1,0 @@
-
-{
-    "token" : "your_token_here" ,
-    "clientId" : "your_bot_id_here" ,
-    "guildId"  : "your_server_id_here" ,
-    "commands" : "" 
-}

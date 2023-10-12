@@ -13,7 +13,7 @@ module.exports = {
 		
 	async execute(interaction) {
 		// await interaction.reply({content:`${random()}`, ephemeral: true});
-		await interaction.reply(`<:download:1030203895974203502> ${channel.id}`);
+		await interaction.reply(`<:SilverLove:1141063640775151759> pong!`);
 		// await interaction.followUp({ content: `Heyo`, ephemeral: true });
 		// await interaction.random(`100`);
 	},
