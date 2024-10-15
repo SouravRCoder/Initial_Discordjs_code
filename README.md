@@ -1,4 +1,5 @@
-
+# NOT WORKING
+# UPDATE SOON...
 # Discord Js bot Setup code
 
 Its is just a initial Setup code which is same for every developer .
