@@ -1,21 +1,25 @@
 {
-  "name": "javascipt-sample-application",
+  "name": "pandu_moj",
   "version": "1.0.0",
-  "description": "this is a Initial developing which is same for all developer.",
+  "description": "A Perfect PandU FUN Bot",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "author": "Sourav",
+  "author": "Souvy",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.9.0",
-    "@discordjs/rest": "^2.0.0",
-    "@discordjs/voice": "^0.16.0",
-    "deepai": "^1.0.23",
-    "discord.js": "^14.12.1",
-    "dotenv": "^16.3.1",
-    "ffmpeg-static": "^5.1.0",
-    "nodemon": "^3.0.1"
+    "@napi-rs/canvas": "^0.1.59",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "undici": "^6.20.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.57.1",
+    "eslint": "^8.57.1",
+    "globals": "^15.11.0"
   }
 }
