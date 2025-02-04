@@ -1,14 +1,23 @@
-// Require the necessary discord.js classes
+// Require the necessary discord.js pakages
+
 const express = require('express');
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits , EmbedBuilder } = require('discord.js');
 
 
 require('dotenv').config();
 
+// Require the necessary Currency System pakages
+
+const { Op } = require('sequelize');
+const {codeBlock} = require('discord.js');
+const { Users, CurrencyShop } = require('./dbObjects.js');
+const {currency , addBalance} = require('./Helperfunc.js');
+
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds,GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+
 
 
 //---------------Command Handling---------------------- 
@@ -53,18 +62,55 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 });
 
-// Express OAUTH2
+client.on(Events.MessageCreate, async message => {
+	if (message.author.bot) return;
+	addBalance(message.author.id, 1);
+});
 
-// const app = express();
+//---------------For Prefix Functions---------------------
 
-// app.get('/', (request, response) => {
-// 	console.log(`The access code is: ${request.query.code}`);
-// 	return response.sendFile('index.html', { root: '.' });
-// });
 
-// app.listen(process.env.port, () => console.log(`App listening at http://localhost:${process.env.port}`));
 
-// Log in to Discord with your client's token
+
+// ---------------PREFIX SIDE COMMAND----------------
+
+
+
+
+client.on(Events.MessageCreate, async message => {
+	if (message.content === '!guess') {
+        	const guess_number = new EmbedBuilder()
+			  .setColor(0x0099ff)
+			  .setTitle("Guess a Number")
+			  .setDescription("Guess a number between 1 and 10")
+			  .setTimestamp();
+		
+			
+			message.reply({ embeds: [guess_number] });
+		
+			const number = Math.floor(Math.random() * 10) + 1;
+		
+			const filter = response => {
+				return response.author.id === message.author.id;
+			  };
+		  
+			  message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] })
+				.then(collected => {
+				  const guess = parseInt(collected.first().content, 10);
+				  if (guess == number) {
+					message.channel.send(`Congratulations! You guessed the correct number: ${number}`);
+				  } else {
+					message.channel.send(`The correct number was ${number}. Better luck next time!`);
+				  }
+				})
+				.catch(collected => {
+				  message.channel.send('You did not provide a valid guess in time!');
+				});
+    }
+});
+
+
+
 client.login(process.env.Token);
 
 

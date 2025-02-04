@@ -29,30 +29,33 @@ for (const folder of commandFolders) {
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST({ version: "g" }).setToken(process.env.Token);
+const rest = new REST().setToken(process.env.Token);
+
+// rest.put(Routes.applicationCommands(process.env.clientId), { body: [] })
+// 	.then(() => console.log('Successfully deleted all application commands.'))
+// 	.catch(console.error);
+
+  // rest.put(Routes.applicationGuildCommands(process.env.clientId, process.env.guildId), { body: [] })
+	// .then(() => console.log('Successfully deleted all guild commands.'))
+	// .catch(console.error);
 
 // and deploy your commands!
 (async () => {
-  // try {
-  // 	console.log(`Started refreshing ${commands.length} application (/) commands.`);
+  try {
+  	console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-  // 	// The put method is used to fully refresh all commands in the guild with the current set
-  // 	const data = await rest.put(
-  // 		// Routes.applicationGuildCommands(process.env.clientId, process.env.guildId),
-  // 		Routes.applicationCommands(process.env.clientId),
-  // 		{ body: commands },
-  // 	);
+  	// The put method is used to fully refresh all commands in the guild with the current set
+  	const data = await rest.put(
+  		// Routes.applicationGuildCommands(process.env.clientId, process.env.guildId),
+  		Routes.applicationCommands(process.env.clientId),
+  		{ body: commands },
+  	);
 
-  // 	console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  // } catch (error) {
-  // 	// And of course, make sure you catch and log any errors!
-  // 	console.error(error);
-  // }
+  	console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+  } catch (error) {
+  	// And of course, make sure you catch and log any errors!
+  	console.error(error);
+  }
 
-  rest
-    .delete(
-      Routes.applicationGuildCommands(clientId, guildId, "oldCommandName")
-    )
-    .then(() => console.log("Successfully deleted the old command"))
-    .catch(console.error);
+
 })();
