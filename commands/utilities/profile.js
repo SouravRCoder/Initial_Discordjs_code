@@ -98,6 +98,6 @@ module.exports = {
 	const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile-image.png' });
     
     
-	await interaction.reply({ files: [attachment] });
+	await interaction.reply({ files: [attachment], content:`Ping:${Math.abs(Date.now() - interaction.createdTimestamp)} ms` });
   },
 };
