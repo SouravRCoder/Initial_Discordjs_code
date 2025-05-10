@@ -1,6 +1,6 @@
-const {SlashCommandBuilder, Collection} = require("discord.js");
+const { SlashCommandBuilder, Collection,EmbedBuilder } = require("discord.js");
 
-const {getBalance} = require("../../Helperfunc.js");
+const { getBalance } = require("../../Helperfunc.js");
 
 
 
@@ -14,13 +14,20 @@ module.exports = {
                 .setName("user")
                 .setDescription("The user to check the inventory for")
                 .setRequired(false)
-            ),
+        ),
 
-        async execute(interaction){
-            
-            const target = interaction.options.getUser('user') ?? interaction.user;
+    async execute(interaction) {
+        const Embed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle('Balance')
+            .setTimestamp()
 
-            await interaction.reply(`${target.tag} has ${getBalance(target.id)}💰`);
-        }
+        const target = interaction.options.getUser('user') ?? interaction.user;
+
+        await interaction.reply({
+            embeds: [Embed.setDescription(`${target.displayName} has ${getBalance(target.id)} 💰`)
+                .setFooter({ text: `${Math.abs(Date.now() - interaction.createdTimestamp)} ms` })]
+        });
+    }
 
 }
