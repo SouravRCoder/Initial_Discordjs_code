@@ -1,4 +1,5 @@
 .env
-# .gitignore
+.gitignore
 /node_modules
 database.sqlite
+test.js
