@@ -1,4 +1,4 @@
-// Require the necessary discord.js pakages
+// Require the necessary discord.js packages
 
 const express = require('express');
 const fs = require('node:fs');
@@ -8,7 +8,7 @@ const { Client, Collection, Events, GatewayIntentBits , EmbedBuilder } = require
 
 require('dotenv').config();
 
-// Require the necessary Currency System pakages
+// Require the necessary Currency System packages
 
 const { Op } = require('sequelize');
 const {codeBlock} = require('discord.js');
