@@ -1,6 +1,7 @@
 .env
 .gitignore
 /node_modules
+/.vscode
 database.sqlite
 test.js
 Resignation.docx
