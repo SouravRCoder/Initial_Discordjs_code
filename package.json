@@ -10,13 +10,17 @@
   "author": "Souvy",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.10.0",
+    "@discordjs/voice": "^0.18.0",
     "@napi-rs/canvas": "^0.1.59",
     "discord-gamecord": "^3.4.3",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "ffmpeg-static": "^5.2.0",
     "nodemon": "^3.1.7",
     "sequelize": "^6.37.5",
+    "sodium-native": "^5.0.4",
     "sqlite3": "^5.1.7",
     "undici": "^6.20.1"
   },
