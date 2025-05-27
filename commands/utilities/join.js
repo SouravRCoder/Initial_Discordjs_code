@@ -23,14 +23,10 @@ module.exports = {
         //     console.log("User is not in a voice channel.");
         // }
 
-        connection.on(VoiceConnectionStatus.Connecting, () => {
-            console.log('The connection has entered the Ready state - ready to play audio!');
-            interaction.reply({ content: `Connecting...`})
-        });
 
-        connection.on(VoiceConnectionStatus.Ready, () => {
+        connection.on(VoiceConnectionStatus.Ready, (oldState, newState) => {
             console.log('The connection has entered the Ready state - ready to play audio!');
-            interaction.reply({ content: `Successfully Connected in VC Channel!!`})
+            interaction.reply({ content: `Successfully Connected in VC Channel!!`});
         });
     }
 }
