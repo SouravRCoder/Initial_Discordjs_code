@@ -13,11 +13,11 @@ module.exports = {
     const guess_number = new EmbedBuilder()
       .setColor(0x0099ff)
       .setTitle("Guess a Number")
-      .setDescription("guess a number between 1 and 10")
+      .setDescription("Guess a number between 1 and 10")
       .setTimestamp();
 
     
-    interaction.reply({ embeds: [guess_number] });
+    interaction.reply({ embeds: [guess_number.setFooter({ text: `${Math.abs(Date.now() - interaction.createdTimestamp)} ms`})] });
 
     const number = Math.floor(Math.random() * 10) + 1;
 
@@ -29,13 +29,13 @@ module.exports = {
         .then(collected => {
           const guess = parseInt(collected.first().content, 10);
           if (guess == number) {
-            interaction.followUp(`Congratulations! You guessed the correct number: ${number}`);
+            interaction.followUp({embeds:[guess_number.setDescription(`Congratulations! You guessed the correct number: ${number}`).setFooter({ text: `${Math.abs(Date.now() - interaction.createdTimestamp)} ms`})]});
           } else {
-            interaction.followUp(`Sorry, the correct number was ${number}. Better luck next time!`);
+            interaction.followUp({embeds:[guess_number.setDescription(`Sorry, the correct number was ${number}. Better luck next time!`).setFooter({ text: `${Math.abs(Date.now() - interaction.createdTimestamp)} ms`})]});
           }
         })
         .catch(collected => {
-          interaction.followUp('You did not provide a valid guess in time!');
+          interaction.followUp({embeds:[guess_number.setDescription('You did not provide a valid guess in time!').setFooter({ text: `${Math.abs(Date.now() - interaction.createdTimestamp)} ms`})]});
         });
     },
   };

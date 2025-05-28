@@ -6,7 +6,7 @@ module.exports = {
         .setDescription('Showing your avatar'),
 
         async execute(interaction){
-           const avatar =  await interaction.user.displayAvatarURL({ extension: 'jpg' })
+           const avatar =  await interaction.user.displayAvatarURL({ extension: 'png'  , size:128 })
 
            await interaction.reply({ files: [avatar] });
         }

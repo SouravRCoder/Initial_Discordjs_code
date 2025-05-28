@@ -1,4 +1,4 @@
-const {SlashCommandBuilder} = require("discord.js");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -6,7 +6,12 @@ module.exports = {
         .setDescription('Replies to Pong'),
 
         async execute(interaction){
-            await interaction.reply("Pong!");
+            const Embed = new EmbedBuilder()
+                .setColor(0x0099FF)
+                .setDescription('Pong')
+                .setTimestamp()
+            
+            await interaction.reply({ embeds:[Embed.setFooter({ text:`${Math.abs(Date.now() - interaction.createdTimestamp)} ms`})]});
         }
 
 }
